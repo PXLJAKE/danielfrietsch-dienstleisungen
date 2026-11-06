@@ -10,7 +10,7 @@
 export const owner = {
   name: 'Daniel Frietsch',
   business: 'Dienstleistungen rund um Haus und Garten',
-  street: 'Großweiererstrasse 60',
+  street: 'Großweiererstraße 60',
   postalCode: '77855',
   city: 'Achern-Großweier',
   phone: { display: '07841 5501', href: 'tel:+4978415501' },
