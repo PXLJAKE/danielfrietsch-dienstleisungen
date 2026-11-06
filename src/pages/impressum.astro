@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { owner } from '../data/owner';
+---
+
+<Base
+  title="Impressum – Daniel Frietsch"
+  description="Impressum von Daniel Frietsch, Dienstleistungen rund um Haus und Garten, Achern-Großweier."
+>
+  <article class="legal wrap">
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <address>
+      {owner.name}<br />
+      {owner.business}<br />
+      {owner.street}<br />
+      {owner.postalCode} {owner.city}
+    </address>
+
+    <h2>Kontakt</h2>
+    <p>
+      Telefon: <a href={owner.phone.href}>{owner.phone.display}</a><br />
+      Mobil: <a href={owner.mobile.href}>{owner.mobile.display}</a><br />
+      Fax: {owner.fax.display}<br />
+      E-Mail: <a href={`mailto:${owner.email}`}>{owner.email}</a>
+    </p>
+
+    {
+      owner.vatId && (
+        <>
+          <h2>Umsatzsteuer-Identifikationsnummer</h2>
+          <p>USt-IdNr. gemäß § 27a Umsatzsteuergesetz: {owner.vatId}</p>
+        </>
+      )
+    }
+
+    {
+      owner.chamber && (
+        <>
+          <h2>Zuständige Kammer</h2>
+          <p>{owner.chamber}</p>
+        </>
+      )
+    }
+  </article>
+</Base>

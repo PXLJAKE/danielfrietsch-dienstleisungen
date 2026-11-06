@@ -1,0 +1,30 @@
+# Mehrseitige statische Seite: Bewusst KEINE SPA-Rewrite-Regel auf /index.html,
+# sonst würden unbekannte Pfade nie 404 liefern.
+Options -MultiViews -Indexes
+
+ErrorDocument 404 /404.html
+
+# Alte Nicepage-Adressen
+RedirectMatch 301 ^/Startseite\.html$ /
+RedirectMatch 301 ^/Impressum\.html$ /impressum/
+RedirectMatch 301 ^/blog(/.*)?$ /
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; manifest-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+  Header always unset X-Powered-By
+  Header unset X-Powered-By
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>

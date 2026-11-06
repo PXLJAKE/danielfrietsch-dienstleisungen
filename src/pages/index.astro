@@ -1,0 +1,232 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Gallery from '../components/Gallery.astro';
+import { owner } from '../data/owner';
+
+import hero from '../assets/fotos/hero-stammzerlegung.jpg';
+import faellungStamm from '../assets/fotos/faellung-stamm-schneiden.jpg';
+import seilklettertechnik from '../assets/fotos/seilklettertechnik-stamm.jpg';
+import abtragenKrone from '../assets/fotos/abtragen-krone.jpg';
+import kletternFichte from '../assets/fotos/klettern-fichte.jpg';
+import steigerStamm from '../assets/fotos/steiger-stammstueck.jpg';
+import kletternLaubbaum from '../assets/fotos/klettern-laubbaum.jpg';
+import mammutbaum from '../assets/fotos/mammutbaum-klettern.jpg';
+import nebelStamm from '../assets/fotos/nebel-stamm.jpg';
+import steigerKrone from '../assets/fotos/steiger-krone.jpg';
+import steigerSaegen from '../assets/fotos/steiger-saegen.jpg';
+import fichteLeiter from '../assets/fotos/fichte-leiter.jpg';
+import umgestuerzt from '../assets/fotos/umgestuerzter-baum.jpg';
+import stammBoden from '../assets/fotos/stamm-am-boden.jpg';
+import brennholzAnhaenger from '../assets/fotos/brennholz-anhaenger.jpg';
+import brennholzRueckewagen from '../assets/fotos/brennholz-rueckewagen.jpg';
+import brennholzAbtransport from '../assets/fotos/brennholz-abtransport.jpg';
+import holzkunstAuto from '../assets/fotos/holzkunst-auto.jpg';
+import holzkunstTruhe from '../assets/fotos/holzkunst-truhe.jpg';
+
+const services = [
+  { title: 'Baumfällungen', href: '#baumfaellungen', text: 'In allen Lagen, auch mit Stamm- und Seilklettertechnik oder Steigerunterstützung.' },
+  { title: 'Brennholzaufarbeitung', href: '#brennholz', text: 'Vom Baum im Wald bis in den heimischen Ofen.' },
+  { title: 'Holzterrassen', href: '#holzterrassen', text: 'Vom Fundament bis zur fertigen Terrasse.' },
+  { title: 'Holzkunst und Holzmöbel', href: '#holzkunst', text: 'Ausgewählte Stücke aus Holz.' },
+  { title: 'Sägekettenschärfdienst', href: '#weitere-leistungen', text: 'Motorsägeketten aller Hersteller und Größen.' },
+  { title: 'Grünflächen- und Grundstückspflege', href: '#weitere-leistungen', text: 'Rasen, Hecken, Hof und Gehweg.' },
+  { title: 'Reparaturen im und am Haus', href: '#weitere-leistungen', text: 'Klemmende Türen, wackelnde Möbel und mehr.' },
+];
+
+const treePhotos = [
+  { src: faellungStamm, alt: 'Arbeiter mit Schutzhelm sägt einen gefällten Stamm auf einer Wiese', wide: true },
+  { src: seilklettertechnik, alt: 'Kletterer am Seil sägt am Stamm eines hohen Nadelbaums' },
+  { src: abtragenKrone, alt: 'Kletterer trägt einen hohen Stamm von oben Stück für Stück ab' },
+  { src: steigerStamm, alt: 'Arbeiter im Korb einer Hebebühne hält ein abgesägtes Stammstück' },
+  { src: kletternFichte, alt: 'Kletterer entastet eine hohe Fichte' },
+  { src: kletternLaubbaum, alt: 'Kletterer an einem gekappten Laubbaum vor blauem Himmel' },
+  { src: umgestuerzt, alt: 'Arbeiter sägt auf einem großen umgestürzten Baum', wide: true },
+  { src: mammutbaum, alt: 'Kletterer am langen, entasteten Stamm eines Mammutbaums' },
+  { src: nebelStamm, alt: 'Kletterer an einem hohen Stamm im Nebel' },
+  { src: steigerSaegen, alt: 'Arbeiter sägt von der Hebebühne aus einen Stamm, Sägespäne fliegen' },
+  { src: fichteLeiter, alt: 'Kletterer in einer Fichte, darunter eine angelehnte Leiter' },
+  { src: steigerKrone, alt: 'Arbeiter im Korb einer Hebebühne zwischen den Ästen einer Baumkrone' },
+  { src: stammBoden, alt: 'Arbeiter zerlegt einen liegenden Stamm im Garten', wide: true },
+];
+
+const firewoodPhotos = [
+  { src: brennholzAnhaenger, alt: 'Traktor mit Ladekran und Anhänger voller Stämme im Wald', wide: true },
+  { src: brennholzRueckewagen, alt: 'Arbeiter an Traktor mit Holzspalter im Wald' },
+  { src: brennholzAbtransport, alt: 'Beladener Anhänger mit Holz auf einem Waldweg' },
+];
+
+const artPhotos = [
+  { src: holzkunstAuto, alt: 'Aus Holz geschnitztes Auto, auf der Ladefläche eine Flasche' },
+  { src: holzkunstTruhe, alt: 'Aufklappbare Sitzbank aus Rundhölzern im Blockhausstil' },
+];
+---
+
+<Base
+  title="Daniel Frietsch – Dienstleistungen rund um Haus und Garten in Achern-Großweier"
+  description="Baumfällungen, Brennholzaufarbeitung, Holzterrassen, Holzkunst, Sägekettenschärfdienst, Grundstückspflege und Reparaturen. Daniel Frietsch, Achern-Großweier."
+>
+  <section class="hero">
+    <Image
+      class="hero__image"
+      src={hero}
+      alt="Arbeiter in Schutzkleidung zerlegt mit der Motorsäge einen Stamm, Späne fliegen durch die Luft"
+      widths={[800, 1280, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={75}
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="wrap hero__content">
+      <p class="eyebrow">Daniel Frietsch · Achern-Großweier</p>
+      <h1>Dienstleistungen rund um Haus und Garten</h1>
+      <p class="hero__lead">Vom Baum im Wald bis in den heimischen Ofen. Und vieles mehr, alles aus einer Hand.</p>
+      <div class="hero__actions">
+        <a class="btn" href={owner.phone.href}>Anrufen: {owner.phone.display}</a>
+        <a class="btn btn--ghost" href="#leistungen">Unsere Leistungen</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="leistungen" class="section">
+    <div class="wrap">
+      <h2>Unsere Dienstleistungen</h2>
+      <ol class="service-list">
+        {
+          services.map((service) => (
+            <li>
+              <a href={service.href}>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section id="baumfaellungen" class="section section--dark">
+    <div class="wrap">
+      <div class="split-intro">
+        <h2>Baumfällungen</h2>
+        <div>
+          <p class="lead">
+            Wir führen Baumfällungen in allen Lagen durch, auch mit Stamm- und Seilklettertechnik oder
+            Steigerunterstützung.
+          </p>
+          <a class="btn" href="#kontakt">Kontakt aufnehmen</a>
+        </div>
+      </div>
+      <Gallery photos={treePhotos} label="Bilder von Baumfällungen" />
+    </div>
+  </section>
+
+  <section id="brennholz" class="section">
+    <div class="wrap two-col">
+      <div>
+        <h2>Brennholz&shy;aufarbeitung</h2>
+        <p class="lead">
+          Vom Baum im Wald bis in den heimischen Ofen. Wir holen Ihr Holz aus dem Wald und bereiten es nach Ihren
+          Wünschen auf.
+        </p>
+        <ul class="check-list">
+          <li>Abtransport von Polderholz</li>
+          <li>Meterscheite spalten</li>
+          <li>Ofenfertig sägen</li>
+        </ul>
+        <a class="btn btn--dark" href="#kontakt">Kontakt aufnehmen</a>
+      </div>
+      <Gallery photos={firewoodPhotos} label="Bilder der Brennholzaufarbeitung" columns={2} />
+    </div>
+  </section>
+
+  <section id="holzterrassen" class="section section--sand">
+    <div class="wrap two-col two-col--even">
+      <div>
+        <h2>Holzterrassen</h2>
+        <p class="lead">Vom Fundament bis zur fertigen Terrasse.</p>
+      </div>
+      <div>
+        <ul class="check-list">
+          <li>Unterkonstruktion mit Wetterschutzfolie auf der Oberfläche</li>
+          <li>Wassernase an der Unterseite</li>
+          <li>Verschiedene Beläge möglich</li>
+        </ul>
+        <a class="btn btn--dark" href="#kontakt">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="holzkunst" class="section">
+    <div class="wrap two-col">
+      <div>
+        <h2>Holzkunst und Holzmöbel</h2>
+        <p class="lead">Bei Interesse sprechen Sie uns einfach an.</p>
+        <a class="btn btn--dark" href="#kontakt">Kontakt aufnehmen</a>
+      </div>
+      <Gallery photos={artPhotos} label="Bilder von Holzkunst und Holzmöbeln" columns={2} />
+    </div>
+  </section>
+
+  <section id="weitere-leistungen" class="section section--sand">
+    <div class="wrap">
+      <h2>Weitere Dienstleistungen</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Sägekettenschärfdienst</h3>
+          <p>Wir schärfen Motorsägeketten aller Hersteller und Größen und setzen Ihre Säge wieder instand.</p>
+        </article>
+        <article class="card">
+          <h3>Grünflächenpflege und Grundstückspflege</h3>
+          <p>Vom Rasenmähen über Heckenschneiden bis zur Hof- und Gehwegreinigung, alles aus einer Hand.</p>
+        </article>
+        <article class="card">
+          <h3>Reparaturen im und am Haus</h3>
+          <p>
+            Ob klemmende oder quietschende Türen, ein wackelndes Möbelstück oder defekte Leuchtmittel: Nehmen Sie einfach
+            Kontakt mit uns auf. Wir schauen uns das Sorgenkind kostenfrei an und bieten Ihnen eine Lösung an.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section section--dark">
+    <div class="wrap contact">
+      <div>
+        <h2>Kontakt</h2>
+        <p class="lead">Bei Fragen, für ein Angebot oder eine Preisauskunft nehmen Sie einfach Kontakt mit uns auf.</p>
+      </div>
+      <dl class="contact__list">
+        <div>
+          <dt>Telefon</dt>
+          <dd><a href={owner.phone.href}>{owner.phone.display}</a></dd>
+        </div>
+        <div>
+          <dt>Mobil</dt>
+          <dd><a href={owner.mobile.href}>{owner.mobile.display}</a></dd>
+        </div>
+        <div>
+          <dt>E-Mail</dt>
+          <dd><a href={`mailto:${owner.email}`}>{owner.email}</a></dd>
+        </div>
+        <div>
+          <dt>Anschrift</dt>
+          <dd>{owner.street}, {owner.postalCode} {owner.city}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Bildansicht">
+    <button type="button" class="lightbox__close" data-close aria-label="Bildansicht schließen">×</button>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" data-prev aria-label="Vorheriges Bild">‹</button>
+    <figure>
+      <img alt="" />
+      <figcaption></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav lightbox__nav--next" data-next aria-label="Nächstes Bild">›</button>
+  </dialog>
+</Base>
