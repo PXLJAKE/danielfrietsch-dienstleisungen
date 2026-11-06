@@ -1,0 +1,15 @@
+# dist/ wird bewusst committet: Plesk zieht master per Git und hat keinen Build-Schritt.
+node_modules/
+.astro/
+
+# Archiv der alten Nicepage-Seite (nur lokal)
+_alte-website/
+
+.env
+.env.*
+!.env.example
+*.log
+*.zip
+.DS_Store
+Thumbs.db
+.vscode/

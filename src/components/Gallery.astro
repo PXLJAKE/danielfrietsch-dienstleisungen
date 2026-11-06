@@ -1,0 +1,46 @@
+---
+import { getImage, Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface Photo {
+  src: ImageMetadata;
+  alt: string;
+  wide?: boolean;
+}
+
+interface Props {
+  photos: Photo[];
+  label: string;
+  columns?: 2 | 3 | 4;
+}
+
+const { photos, label, columns = 4 } = Astro.props;
+
+// Ohne JavaScript bleibt jedes Vorschaubild ein normaler Link auf die große Version.
+const items = await Promise.all(
+  photos.map(async (photo) => ({
+    ...photo,
+    large: await getImage({ src: photo.src, width: Math.min(photo.src.width, 1600), format: 'webp', quality: 75 }),
+  })),
+);
+---
+
+<ul class:list={['gallery', `gallery--${columns}`]} aria-label={label}>
+  {
+    items.map((photo) => (
+      <li class:list={[{ 'gallery__item--wide': photo.wide }]}>
+        <a href={photo.large.src} data-lightbox aria-label={`Bild vergrößern: ${photo.alt}`}>
+          <Image
+            src={photo.src}
+            alt={photo.alt}
+            widths={[400, 800]}
+            sizes="(max-width: 700px) 50vw, 25vw"
+            format="webp"
+            quality={72}
+            loading="lazy"
+          />
+        </a>
+      </li>
+    ))
+  }
+</ul>
